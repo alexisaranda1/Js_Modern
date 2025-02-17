@@ -2,6 +2,8 @@ function saludar(nombre){
  console.log("Hola",nombre);
 }
 
+
+
 const saludarFelcha = () =>{
 console.log("Saludar flecha");
 }
@@ -31,4 +33,3 @@ console.log(sumar(2,5));
 console.log(sumar2(5,5));
 
 console.log(getAleatorio());
-console.log(get)
