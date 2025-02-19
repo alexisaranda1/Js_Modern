@@ -1,5 +1,5 @@
 console.log("Test en app.js");
-console.log("Estoy desde el navegador");
+console.log("Estoy desde CASA ");
 
 //require("./Tipos_Datos_primitivos");
 //require("./arreglos")
