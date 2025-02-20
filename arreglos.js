@@ -1,5 +1,7 @@
 const arr = new Array(10);
 
+const numeros = [32,1,3];
+
 let cosas= [
     true,
     123,
@@ -38,3 +40,21 @@ cosas.forEach( (elemento,indice) =>{
 
 let indice = cosas.indexOf("string");
 console.log("inde de string: ", indice)
+
+
+for(let i=0; i< numeros.length; i++ ){
+    console.log(numeros[i]);
+}
+numeros.push(4); // se agrega un elemento al final
+numeros.unshift(0);// agrega al principio 
+numeros.pop();// elimina el ultimo
+numeros.shift();// elimina el primero
+
+let n = 1;
+let m = 1;
+
+numeros.splice(n,m)// elimina desde n hasta m
+
+
+const numerosDuplicados = numeros.map(numero => numero * 2);
+console.log(numerosDuplicados);  // [2, 4, 6, 8, 10]
