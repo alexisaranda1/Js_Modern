@@ -58,3 +58,40 @@ numeros.splice(n,m)// elimina desde n hasta m
 
 const numerosDuplicados = numeros.map(numero => numero * 2);
 console.log(numerosDuplicados);  // [2, 4, 6, 8, 10]
+
+
+// filtar por algo en espesifico
+const numerosPares = numeros.filter(num => num % 2 === 0);
+console.log(numerosPares); // [32]
+
+
+// reduce toma un gran cantidad de datos y te devuelve uno solo
+const suma = numeros.reduce((acumulador, num) => acumulador + num, 0);
+console.log(suma); // 10
+
+
+const personas = [
+    { nombre: "Juan", edad: 30 },
+    { nombre: "María", edad: 25 },
+    { nombre: "Pedro", edad: 35 }
+];
+
+// Buscar a la persona llamada "María"
+const personaBuscada = personas.find(persona => persona.nombre === "María");
+
+console.log(personaBuscada); 
+// Salida: { nombre: "María", edad: 25 }
+
+// Verifica si todas las personas son mayores de edad
+const todasMayoresDeEdad = personas.every(persona => persona.edad >= 18);console.log(todasMayoresDeEdad); 
+// Salida: false
+
+
+
+const numeros1 = [1, 2, 3];
+const numeros2 = [4, 5, 6];
+
+// Combinar los dos arrays
+const numerosCombinados = numeros1.concat(numeros2);
+
+console.log(numerosCombinados); // Salida: [1, 2, 3, 4, 5, 6]

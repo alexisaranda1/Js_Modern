@@ -1,0 +1,38 @@
+class Cliente {
+    constructor(nombre, saldo){
+        this.nombre = nombre;
+        this.saldo = saldo
+    }
+    mostrarInformacion(){
+        return "cliente",this.nombre;
+    }
+    static bienenida(){
+        return "Bienvenido";
+    }
+    
+}
+
+const  Cliente2 = class{
+     constructor(nombre, saldo){
+        this.nombre = nombre;
+        this.saldo = saldo
+    }
+    mostrarInformacion(){
+        return "cliente",this.nombre;
+    }
+}
+
+
+
+const juan = new Cliente("Juan", 200);
+const juan2 = new Cliente2("Juan2", 210);
+
+console.log(juan.mostrarInformacion());
+console.log(juan);
+
+console.log(juan2.mostrarInformacion());
+console.log(juan2);
+console.log(Cliente.bienenida());
+
+
+ 
