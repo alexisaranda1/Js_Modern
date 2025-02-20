@@ -203,3 +203,192 @@ obtenerDatos();
 
 
 
+
+
+# 📌 Guía de Principios SOLID en JavaScript
+
+Los principios **SOLID** son un conjunto de reglas para escribir código limpio y mantenible en la programación orientada a objetos. Se componen de cinco principios:
+
+1. **S** - Single Responsibility Principle (SRP) - Principio de Responsabilidad Única
+2. **O** - Open/Closed Principle (OCP) - Principio Abierto/Cerrado
+3. **L** - Liskov Substitution Principle (LSP) - Principio de Sustitución de Liskov
+4. **I** - Interface Segregation Principle (ISP) - Principio de Segregación de Interfaces
+5. **D** - Dependency Inversion Principle (DIP) - Principio de Inversión de Dependencias
+
+---
+
+## 1️⃣ Principio de Responsabilidad Única (SRP)
+Cada clase o módulo debe tener una sola razón para cambiar, es decir, una única responsabilidad.
+
+### ❌ Mal Ejemplo:
+```js
+class Usuario {
+  constructor(nombre, email) {
+    this.nombre = nombre;
+    this.email = email;
+  }
+  guardarEnBD() {
+    // Lógica para guardar en la base de datos
+  }
+}
+```
+
+### ✅ Buen Ejemplo:
+```js
+class Usuario {
+  constructor(nombre, email) {
+    this.nombre = nombre;
+    this.email = email;
+  }
+}
+
+class UsuarioRepository {
+  guardar(usuario) {
+    // Lógica para guardar el usuario en la base de datos
+  }
+}
+```
+
+---
+
+## 2️⃣ Principio Abierto/Cerrado (OCP)
+El código debe estar abierto para extensión, pero cerrado para modificaciones.
+
+### ❌ Mal Ejemplo:
+```js
+class Calculadora {
+  operar(a, b, operacion) {
+    if (operacion === "sumar") return a + b;
+    if (operacion === "restar") return a - b;
+  }
+}
+```
+
+### ✅ Buen Ejemplo:
+```js
+class Operacion {
+  ejecutar(a, b) {}
+}
+
+class Suma extends Operacion {
+  ejecutar(a, b) {
+    return a + b;
+  }
+}
+
+class Resta extends Operacion {
+  ejecutar(a, b) {
+    return a - b;
+  }
+}
+```
+
+---
+
+## 3️⃣ Principio de Sustitución de Liskov (LSP)
+Las clases derivadas deben poder sustituir a sus clases base sin alterar la funcionalidad del programa.
+
+### ❌ Mal Ejemplo:
+```js
+class Ave {
+  volar() {
+    console.log("Volando...");
+  }
+}
+
+class Pinguino extends Ave {}
+
+let pinguino = new Pinguino();
+pinguino.volar(); // ⚠️ Error, los pingüinos no vuelan
+```
+
+### ✅ Buen Ejemplo:
+```js
+class Ave {}
+
+class AveVoladora extends Ave {
+  volar() {
+    console.log("Volando...");
+  }
+}
+
+class Pinguino extends Ave {
+  nadar() {
+    console.log("Nadando...");
+  }
+}
+```
+
+---
+
+## 4️⃣ Principio de Segregación de Interfaces (ISP)
+Las interfaces deben ser específicas para cada tipo de cliente en lugar de ser genéricas.
+
+### ❌ Mal Ejemplo:
+```js
+class Trabajador {
+  constructor(nombre) {
+    this.nombre = nombre;
+  }
+  programar() {}
+  cocinar() {}
+}
+```
+
+### ✅ Buen Ejemplo:
+```js
+class Desarrollador {
+  programar() {}
+}
+
+class Cocinero {
+  cocinar() {}
+}
+```
+
+---
+
+## 5️⃣ Principio de Inversión de Dependencias (DIP)
+Los módulos de alto nivel no deben depender de módulos de bajo nivel, sino de abstracciones.
+
+### ❌ Mal Ejemplo:
+```js
+class MySQL {
+  conectar() {
+    return "Conectando a MySQL";
+  }
+}
+
+class ServicioDeUsuario {
+  constructor() {
+    this.db = new MySQL();
+  }
+}
+```
+
+### ✅ Buen Ejemplo:
+```js
+class BaseDeDatos {
+  conectar() {}
+}
+
+class MySQL extends BaseDeDatos {
+  conectar() {
+    return "Conectando a MySQL";
+  }
+}
+
+class ServicioDeUsuario {
+  constructor(db) {
+    this.db = db;
+  }
+}
+```
+
+---
+
+## 🎯 **Conclusión**
+Los principios **SOLID** permiten crear código más estructurado, mantenible y escalable. Aplicarlos ayuda a evitar dependencias innecesarias y facilita futuras modificaciones. 🚀
+
+
+
