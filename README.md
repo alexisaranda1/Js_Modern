@@ -1,4 +1,4 @@
-# ✨ Guía de JavaScript: Primitivos, Arreglos, Funciones, Arrow Functions y Objeto Literal
+# ✨ Guía de JavaScript: Primitivos, Arreglos, Funciones, Arrow Functions, Objetos, Clases y Asincronismo
 
 ## 1. 💡 **Tipos Primitivos**
 Los **tipos primitivos** en JavaScript son los valores más básicos. Se almacenan por valor.
@@ -16,7 +16,7 @@ let bigInt = 9007199254740991n; // BigInt (números grandes)
 
 ---
 
-## 2. 📏 **Arreglos**
+## 2. 📏 **Arreglos y Métodos de Array**
 Los **arrays** permiten almacenar múltiples valores en una sola variable.
 
 ### Ejemplo de un array:
@@ -33,6 +33,25 @@ frutas.pop(); // Elimina el último
 frutas.unshift("Mango"); // Agrega al inicio
 frutas.shift(); // Elimina el primero
 console.log(frutas.includes("Naranja")); // true
+```
+
+### Métodos de array importantes:
+```js
+// map - transforma los elementos
+let numeros = [1, 2, 3, 4];
+let cuadrados = numeros.map(num => num * num);
+console.log(cuadrados); // [1, 4, 9, 16]
+
+// filter - filtra elementos según una condición
+let mayoresDeDos = numeros.filter(num => num > 2);
+console.log(mayoresDeDos); // [3, 4]
+
+// forEach - ejecuta una función para cada elemento
+numeros.forEach(num => console.log(num * 2));
+
+// reduce - acumula valores
+let suma = numeros.reduce((acc, num) => acc + num, 0);
+console.log(suma); // 10
 ```
 
 ---
@@ -75,8 +94,8 @@ console.log(sumar(5, 10)); // 15
 
 ---
 
-## 5. 📝 **Objeto Literal**
-Los objetos permiten almacenar múltiples valores.
+## 5. 🏗️ **Objetos y Clases**
+Los objetos permiten almacenar múltiples valores relacionados.
 
 ### Ejemplo de un objeto:
 ```js
@@ -90,17 +109,97 @@ const persona = {
 persona.saludar(); // "Hola, soy Juan"
 ```
 
+### Clases y Herencia
+```js
+class Animal {
+  constructor(nombre) {
+    this.nombre = nombre;
+  }
+  hacerSonido() {
+    console.log("Sonido genérico");
+  }
+}
+
+class Perro extends Animal {
+  hacerSonido() {
+    console.log("Guau guau"); // Polimorfismo (método redefinido)
+  }
+}
+
+let miPerro = new Perro("Firulais");
+miPerro.hacerSonido(); // "Guau guau"
+```
+
+### Encapsulamiento (Propiedades privadas)
+```js
+class CuentaBancaria {
+  #saldo = 0; // Propiedad privada
+  constructor(saldoInicial) {
+    this.#saldo = saldoInicial;
+  }
+  depositar(monto) {
+    this.#saldo += monto;
+  }
+  obtenerSaldo() {
+    return this.#saldo;
+  }
+}
+
+let cuenta = new CuentaBancaria(1000);
+console.log(cuenta.obtenerSaldo()); // 1000
+```
+
+---
+
+## 6. ⏳ **Promesas y Async/Await**
+
+Las **promesas** permiten manejar operaciones asincrónicas como peticiones a APIs o bases de datos.
+
+### Creando una promesa:
+```js
+const promesa = new Promise((resolve, reject) => {
+  setTimeout(() => {
+    resolve("Datos cargados");
+  }, 2000);
+});
+
+promesa.then((mensaje) => console.log(mensaje)); // "Datos cargados" después de 2 segundos
+```
+
+### Async/Await (forma moderna de manejar promesas)
+```js
+async function obtenerDatos() {
+  try {
+    let respuesta = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    let datos = await respuesta.json();
+    console.log(datos);
+  } catch (error) {
+    console.error("Error al obtener los datos", error);
+  }
+}
+
+obtenerDatos();
+```
+
+**Explicación:**
+- `async` convierte una función en asincrónica, permitiendo el uso de `await` dentro de ella.
+- `await` pausa la ejecución hasta que la promesa se resuelve.
+- `try...catch` maneja errores.
+
 ---
 
 ## 📈 **Resumen**
 | Concepto          | Descripción |
 |------------------|------------|
 | **Primitivos**   | Valores básicos (`string`, `number`, `boolean`, `null`, `undefined`, `symbol`, `bigInt`). |
-| **Arreglos**     | Colecciones indexadas. Métodos: `push`, `pop`, `shift`, `unshift`. |
-| **Funciones**    | Bloques reutilizables. Se pueden declarar con `function` o `=>`. |
-| **Arrow Functions** | Sintaxis más corta, sin `this` propio. |
-| **Objeto Literal** | Almacenan datos en `{ clave: valor }`. |
+| **Arreglos**     | Colecciones indexadas. Métodos: `map`, `filter`, `forEach`, `reduce`, `push`. |
+| **Funciones**    | Bloques reutilizables con `function` o `=>`. |
+| **Objetos**      | Almacenan datos con `{ clave: valor }`. |
+| **Clases**       | Plantillas para crear objetos con herencia y encapsulamiento. |
+| **Promesas**     | Permiten manejar asincronía (`.then`, `.catch`). |
+| **Async/Await**  | Sintaxis más limpia para promesas. |
 
 ---
 
-🔗 **Esta guía te ayudará a repasar los conceptos básicos de JavaScript!**
+
+
